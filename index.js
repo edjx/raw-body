@@ -232,7 +232,8 @@ function readStream (stream, encoding, length, limit, callback) {
     }
   }
 
-  function onAborted () {
+  function onAborted (err) {
+    console.log("---------onAborted--------", err)
     if (complete) return
 
     done(createError(400, 'request aborted', {
@@ -263,6 +264,7 @@ function readStream (stream, encoding, length, limit, callback) {
   }
 
   function onEnd (err) {
+     console.log("---------onEnd--------", err)
     if (complete) return
     if (err) return done(err)
 
